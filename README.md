@@ -16,6 +16,12 @@
 
 ## التجربة على الآيفون
 
+افتح رابط المعاينة من Safari على الآيفون:
+
+https://joystickgame8333-byte.github.io/salati/
+
+ولتشغيله كتطبيق iOS حقيقي:
+
 1. افتح المشروع على جهاز Mac.
 2. افتح الملف `Salati.xcodeproj` في Xcode.
 3. وصل الآيفون بالـ Mac.

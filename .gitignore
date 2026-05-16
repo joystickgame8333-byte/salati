@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+.gradle/
+Pods/
+
+# Build outputs
+build/
+dist/
+out/
+.next/
+.expo/
+
+# IDE and local files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*

@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#02110d">
+  <title>صلاتي</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg-top: #050a0b;
+      --bg-mid: #052119;
+      --bg-bottom: #000;
+      --gold: #f2ba57;
+      --soft-gold: #ffdc8c;
+      --emerald: #058c5c;
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-strong: rgba(255, 255, 255, 0.13);
+      --border: rgba(255, 255, 255, 0.16);
+      --text: #fff;
+      --muted: rgba(255, 255, 255, 0.68);
+      --faint: rgba(255, 255, 255, 0.52);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        linear-gradient(145deg, rgba(242, 186, 87, 0.12), transparent 42%, rgba(5, 140, 92, 0.18)),
+        linear-gradient(180deg, var(--bg-top), var(--bg-mid), var(--bg-bottom));
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    main {
+      width: min(100%, 460px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: calc(18px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom));
+    }
+
+    .stack {
+      display: grid;
+      gap: 20px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 44px 1fr 44px;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .icon-button {
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .icon-button.gold {
+      color: var(--gold);
+    }
+
+    .brand {
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.08;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+
+    .location {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .location span {
+      color: var(--gold);
+      margin-inline-start: 4px;
+    }
+
+    .glass {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.055)),
+        var(--glass);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(28px) saturate(160%);
+      -webkit-backdrop-filter: blur(28px) saturate(160%);
+    }
+
+    .date-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .date-copy {
+      display: grid;
+      gap: 8px;
+      text-align: right;
+    }
+
+    .date-title {
+      color: var(--gold);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .date-main {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .date-sub {
+      color: var(--faint);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .seal {
+      width: 70px;
+      height: 70px;
+      border-radius: 999px;
+      background: rgba(242, 186, 87, 0.16);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 34px;
+      flex: 0 0 auto;
+    }
+
+    .next-card {
+      min-height: 230px;
+      border-radius: 34px;
+      padding: 24px;
+      background:
+        linear-gradient(225deg, rgba(5, 140, 92, 0.42), rgba(0, 0, 0, 0.62)),
+        rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(242, 186, 87, 0.38);
+      box-shadow: 0 18px 32px rgba(242, 186, 87, 0.10);
+      display: grid;
+      align-content: center;
+      gap: 12px;
+    }
+
+    .next-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .next-label {
+      color: var(--gold);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .next-name {
+      margin-top: 8px;
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .next-icon {
+      color: var(--soft-gold);
+      font-size: 42px;
+      text-shadow: 0 0 22px rgba(242, 186, 87, 0.45);
+    }
+
+    .countdown {
+      direction: ltr;
+      text-align: center;
+      color: var(--gold);
+      font-variant-numeric: tabular-nums;
+      font-size: 48px;
+      line-height: 1.08;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .caption {
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .prayer-list {
+      overflow: hidden;
+      border-radius: 30px;
+    }
+
+    .row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 42px auto 1fr;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 16px;
+    }
+
+    .row + .row {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .row.active::before {
+      content: "";
+      position: absolute;
+      inset: 5px 8px;
+      border-radius: 22px;
+      background: rgba(5, 140, 92, 0.24);
+      z-index: -1;
+    }
+
+    .row-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.07);
+      color: rgba(255, 255, 255, 0.70);
+      font-size: 18px;
+    }
+
+    .row.active .row-icon {
+      background: rgba(242, 186, 87, 0.18);
+      color: var(--gold);
+    }
+
+    .time {
+      direction: ltr;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .row.active .time {
+      color: var(--gold);
+    }
+
+    .name-block {
+      text-align: right;
+      display: grid;
+      gap: 3px;
+      justify-items: end;
+    }
+
+    .name {
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .badge {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 14px 18px;
+    }
+
+    .nav-item {
+      display: grid;
+      justify-items: center;
+      gap: 6px;
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .nav-item.active {
+      color: var(--gold);
+    }
+
+    .nav-icon {
+      font-size: 18px;
+    }
+
+    @media (max-width: 360px) {
+      main {
+        padding-inline: 14px;
+      }
+
+      .countdown {
+        font-size: 42px;
+      }
+
+      .next-name {
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="stack">
+      <header class="topbar">
+        <button class="icon-button gold" aria-label="الإعدادات">⚙</button>
+        <div class="brand">
+          <h1>صلاتي</h1>
+          <div class="location">تل السبع / بئر السبع <span>⌖</span></div>
+        </div>
+        <button class="icon-button" aria-label="القائمة">☰</button>
+      </header>
+
+      <section class="date-card glass">
+        <div class="date-copy">
+          <div class="date-title">مواقيت دقيقة لفلسطين</div>
+          <div class="date-main" id="gregorian-date">...</div>
+          <div class="date-sub" id="hijri-date">...</div>
+        </div>
+        <div class="seal">✦</div>
+      </section>
+
+      <section class="next-card">
+        <div class="next-head">
+          <div>
+            <div class="next-label">الصلاة القادمة</div>
+            <div class="next-name" id="next-name">...</div>
+          </div>
+          <div class="next-icon" id="next-icon">☾</div>
+        </div>
+        <div class="countdown" id="countdown">00:00:00</div>
+        <div class="caption" id="next-caption">متبقي حتى الأذان</div>
+      </section>
+
+      <section class="prayer-list glass" id="prayer-list"></section>
+
+      <nav class="nav glass" aria-label="التنقل">
+        <div class="nav-item active"><span class="nav-icon">⌂</span><span>الرئيسية</span></div>
+        <div class="nav-item"><span class="nav-icon">◉</span><span>القبلة</span></div>
+        <div class="nav-item"><span class="nav-icon">▣</span><span>الأذكار</span></div>
+        <div class="nav-item"><span class="nav-icon">▦</span><span>المزيد</span></div>
+      </nav>
+    </section>
+  </main>
+
+  <script>
+    const prayers = [
+      { key: "fajr", name: "الفجر", time: "04:15", icon: "☾" },
+      { key: "sunrise", name: "الشروق", time: "05:42", icon: "☼" },
+      { key: "dhuhr", name: "الظهر", time: "12:32", icon: "☀" },
+      { key: "asr", name: "العصر", time: "15:56", icon: "◐" },
+      { key: "maghrib", name: "المغرب", time: "19:20", icon: "◒" },
+      { key: "isha", name: "العشاء", time: "20:45", icon: "●" }
+    ];
+
+    const list = document.getElementById("prayer-list");
+    const nextName = document.getElementById("next-name");
+    const nextIcon = document.getElementById("next-icon");
+    const nextCaption = document.getElementById("next-caption");
+    const countdown = document.getElementById("countdown");
+    const gregorianDate = document.getElementById("gregorian-date");
+    const hijriDate = document.getElementById("hijri-date");
+
+    function timeForToday(value) {
+      const [hour, minute] = value.split(":").map(Number);
+      const date = new Date();
+      date.setHours(hour, minute, 0, 0);
+      return date;
+    }
+
+    function nextPrayer(now = new Date()) {
+      for (const prayer of prayers) {
+        const date = timeForToday(prayer.time);
+        if (date > now) {
+          return { ...prayer, date };
+        }
+      }
+
+      const tomorrow = timeForToday(prayers[0].time);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      return { ...prayers[0], date: tomorrow };
+    }
+
+    function formatSeconds(total) {
+      const seconds = Math.max(Math.floor(total / 1000), 0);
+      const hours = String(Math.floor(seconds / 3600)).padStart(2, "0");
+      const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+      const left = String(seconds % 60).padStart(2, "0");
+      return `${hours}:${minutes}:${left}`;
+    }
+
+    function renderDates(now) {
+      gregorianDate.textContent = new Intl.DateTimeFormat("ar", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone: "Asia/Jerusalem"
+      }).format(now);
+
+      hijriDate.textContent = new Intl.DateTimeFormat("ar-u-ca-islamic-umalqura", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone: "Asia/Jerusalem"
+      }).format(now) + " هـ";
+    }
+
+    function renderList(activeKey) {
+      list.innerHTML = prayers.map((prayer) => {
+        const active = prayer.key === activeKey;
+        return `
+          <div class="row ${active ? "active" : ""}">
+            <div class="row-icon">${prayer.icon}</div>
+            <div class="time">${prayer.time}</div>
+            <div class="name-block">
+              <div class="name">${prayer.name}</div>
+              ${active ? '<div class="badge">القادمة</div>' : ""}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function tick() {
+      const now = new Date();
+      const next = nextPrayer(now);
+      nextName.textContent = next.name;
+      nextIcon.textContent = next.icon;
+      nextCaption.textContent = `متبقي حتى أذان ${next.name}`;
+      countdown.textContent = formatSeconds(next.date - now);
+      renderDates(now);
+      renderList(next.key);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
